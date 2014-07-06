@@ -1,0 +1,24 @@
+{
+  "name": "maborami",
+  "version": "0.1.0",
+  "dependencies": {
+    "backbone": "1.1.2",
+    "backbone.babysitter": "~0.1.4",
+    "backbone.epoxy": "latest",
+    "backbone.localstorage": "~1.1.9",
+    "backbone.marionette": "~2.0.1",
+    "backbone.wreqr": "~1.3.1",
+    "bootstrap": "~3.2.0",
+    "bootswatch": "~3.2.0",
+    "cocktail": "~0.5.8",
+    "font-awesome": "~4.1.0",
+    "handlebars.js": "~2.0.0-alpha.4",
+    "jquery": "~2.1.0",
+    "ratchet": "~2.0.2",
+    "require-hbs": "epeli/requirejs-hbs",
+    "require-css": "~0.1.2",
+    "require-text": "requirejs/text",
+    "requirejs": "~2.1.11",
+    "underscore": "~1.4.4"
+  }
+}

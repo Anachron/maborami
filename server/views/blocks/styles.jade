@@ -1,0 +1,11 @@
+append styles
+  case device
+    when 'phone'
+      //- Else it has enough space to display our desktop app
+      link(rel='stylesheet', href='/stylesheets/vendor/ratchet/ratchet.css' + cachebust)
+      link(rel='stylesheet', href='/stylesheets/mobile/style.css' + cachebust)
+  
+    default
+      //- If device is a phone, use ratchet
+      link(rel='stylesheet', href='/stylesheets/vendor/bootswatch/bootstrap.css' + cachebust)
+      link(rel='stylesheet', href='/stylesheets/desktop/style.css' + cachebust)
