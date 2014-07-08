@@ -1,7 +1,6 @@
 compress        = require 'compression'     # Compress served pages
 eio             = require 'express.io'      # Express + Socket.io
 engines         = require 'consolidate'     # Template Engines
-instant         = require 'instant'         # Live-Reload
 errorHandler    = require 'errorhandler'    # Error-Handling
 favIcon         = require 'serve-favicon'   # Favicon
 methodOverride  = require 'method-override' # Override Methods
@@ -28,8 +27,7 @@ exports.startServer = (config, callback) ->
     app.use methodOverride()
     app.use compress()
     app.use config.server.base, app.router
-    #app.use eio.static(config.watch.compiledDir)
-    app.use instant(config.watch.compiledDir)
+    app.use eio.static(config.watch.compiledDir)
     app.use userAgent.express()
 
   app.configure 'development', ->
