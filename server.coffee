@@ -5,6 +5,7 @@ instant         = require 'instant'         # Live-Reload
 errorHandler    = require 'errorhandler'    # Error-Handling
 favIcon         = require 'serve-favicon'   # Favicon
 methodOverride  = require 'method-override' # Override Methods
+userAgent       = require 'express-useragent'  # Get Request Device
 
 exports.startServer = (config, callback) ->
 
@@ -29,6 +30,7 @@ exports.startServer = (config, callback) ->
     app.use config.server.base, app.router
     #app.use eio.static(config.watch.compiledDir)
     app.use instant(config.watch.compiledDir)
+    app.use userAgent.express()
 
   app.configure 'development', ->
     app.use errorHandler()
@@ -39,10 +41,19 @@ exports.startServer = (config, callback) ->
     reload:     config.liveReload.enabled
 
   app.get '/', (req, res) ->
-    req.device = 'desktop'
-    options.device = req.device
-    switch options.device
-      when 'phone'
-        res.render 'mobile', options
-      else
-        res.render 'desktop', options
+    req.useragent = {
+      'isMobile': false,
+      'isDesktop': true,
+      'isBot': false
+    }
+    if req.useragent.isMobile
+      options.device = 'mobile'
+      res.render 'mobile', options
+    else if req.useragent.isDesktop
+      options.device = 'desktop'
+      res.render 'desktop', options
+    else if req.useragent.isBot
+      options.device = 'bot'
+      res.render 'bot', options
+    
+  callback server, app.http.io

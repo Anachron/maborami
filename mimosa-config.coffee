@@ -8,7 +8,7 @@ exports.config = {
     'csslint',        # Lint CSS and find mistakes/unclean styles
     'jshint',         # Lint JS and find mistakes/unclean code
     'less',           # Compile LESS-Styles to CSS
-    #'live-reload',    # Reload changes from editor directly in browser
+    'live-reload',    # Reload changes from editor directly in browser
     'minify-js',      # Minify JavaScript, if wanted
     'minify-css',     # Minify Stylesheets, if wanted
     'require',        # Use the Require-Plugin, needed for Handlebars and CSS-Require

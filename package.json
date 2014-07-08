@@ -17,7 +17,7 @@
     "consolidate": "0.10.0",
     "cookie-parser": "~1.0.0",
     "errorhandler": "~1.0.0",
-    "express-device": "^0.3.10",
+    "express-useragent": "~0.1.0",
     "express.io": "^1.1.13",
     "jade": "^0.35.0",
     "instant" : "~1.4.2",
