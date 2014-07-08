@@ -56,4 +56,4 @@ exports.startServer = (config, callback) ->
       options.device = 'bot'
       res.render 'bot', options
     
-  callback server, app.http.io
+  callback server, app.http().io
