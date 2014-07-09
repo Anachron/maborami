@@ -1,29 +1,29 @@
-## Mimosa-Marionette
+## Maborami
 ### About
 
-Advanced Skeleton for Mimosa (buildtool), using Marionette (Framework), RequireJS (+CSS, +HBS), Express (Server), Jade (Server-Template), Bower (Component Handling), CoffeeScript (JS-Metalang), LESS (CSS-Metalang), Semantic-UI (CSS-Framework), and more.
+Ma(rionette)bo(otstrap)ra(tchet)mi(mosa) is a advanced skeleton for Mimosa.
 
-### Requirements
+- [Express.IO](http://express-io.org/) ([Express-Server](http://expressjs.com/) with [Socket.IO](http://socket.io/) (Websockets))
+- [Bower](http://bower.io/) (Component Handling)
+- [RequireJS](http://requirejs.org/) (+CSS, +HBS)
+- [Jade](http://jade-lang.com/) (Server-Template)
+- [CoffeeScript](http://coffeescript.org/) (JS-Metalang)
+- [LESS](http://lesscss.org/) (CSS-Metalang)
+- [Bootstrap](http://getbootstrap.com/) (CSS-Framework Desktop) v3
+- [Bootswatch](http://bootswatch.com/) (Themes for Bootstrap) v3
+- [Ratchet](http://goratchet.com/) (CSS-Framework Mobile) v2
+- [Font-Awesome](http://fontawesome.io/) (Icon-Font) v3
+- [Marionette](http://marionettejs.com/) (Framework) v2 using [Backbone](http://backbonejs.org/) v1
+- [Handlebars](http://handlebarsjs.com/) (Client-Templates)
+- [Cocktail](https://github.com/onsi/cocktail) (Mixins for Marionete)
 
-- Node.js >= 0.10.x
-- Mimosa >= 2.2.x
-- Git >= 1.5
+### Requirements & Installation
 
-### Installation
+You will need Mimosa properly installed. You can find out more about it [here](http://mimosa.io/started.html).
 
-```mimosa skel:new <project> marionette-semantic```
+```mimosa skel:new <project> marionette-bootstrap```
 
-Will create a new Project in the Subfolder <project> with the already set up configuration of marionette-semantic.
-
-### Configuration
-
-If not on a Windows-Machine, you can reenable the Tests in the `mimosa-config.coffee`, simply comment them out or remove them entirely.
-
-```coffeescript
-  testemRequire:
-    executeDuringBuild: false
-    executeDuringWatch: false
-```
+Will create a new Project in the Subfolder <project> with the already set up configuration of marionette-bootstrap.
 
 ### Optimize
 
@@ -48,6 +48,8 @@ Need help? You can find me at
 
 https://gitter.im/dbashford/mimosa
 
+or submit an issue [here](https://github.com/Anachron/maborami/issues).
+
 ### Credits
 
 - Part of this Readme is pasted from [MimosaWebAppSkeleton](https://github.com/dbashford/MimosaWebAppSkeleton).
@@ -56,4 +58,4 @@ https://gitter.im/dbashford/mimosa
 - [ExpressJS](http://expressjs.com/) by visionmedia.
 - [Marionette](marionettejs.com/) by mojotech.
 
-& many more! Without any of these I would not have enough motivation to get into the next generation web development and learn these amazing packages.
+& many more! Thanks for the amazing open source software.
