@@ -15,7 +15,7 @@ Ma(rionette)bo(otstrap)ra(tchet)mi(mosa) is a advanced skeleton for Mimosa.
 - [Font-Awesome](http://fontawesome.io/) (Icon-Font) v3
 - [Marionette](http://marionettejs.com/) (Framework) v2 using [Backbone](http://backbonejs.org/) v1
 - [Handlebars](http://handlebarsjs.com/) (Client-Templates)
-- [Cocktail](https://github.com/onsi/cocktail) (Mixins for Marionete)
+- [Cocktail](https://github.com/onsi/cocktail) (Mixins for Marionette)
 
 ### Requirements & Installation
 
