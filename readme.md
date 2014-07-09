@@ -1,7 +1,7 @@
 ## Maborami
 ### About
 
-Ma(rionette)bo(otstrap)ra(tchet)mi(mosa) is a advanced skeleton for Mimosa.
+Ma(rionette)bo(otstrap)ra(tchet)mi(mosa) is a advanced skeleton for [Mimosa](http://mimosa.io).
 
 - [Express.IO](http://express-io.org/) ([Express-Server](http://expressjs.com/) with [Socket.IO](http://socket.io/) (Websockets))
 - [Bower](http://bower.io/) (Component Handling)
@@ -52,10 +52,4 @@ or submit an issue [here](https://github.com/Anachron/maborami/issues).
 
 ### Credits
 
-- Part of this Readme is pasted from [MimosaWebAppSkeleton](https://github.com/dbashford/MimosaWebAppSkeleton).
-- David Bashford for [MimosaJS](http://mimosa.io/).
-- [Bower.io](http://bower.io/) by Twitter.
-- [ExpressJS](http://expressjs.com/) by visionmedia.
-- [Marionette](marionettejs.com/) by mojotech.
-
-& many more! Thanks for the amazing open source software.
+Please look in the "About" section.
