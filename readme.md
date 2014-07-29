@@ -3,7 +3,8 @@
 
 Ma(rionette)bo(otstrap)ra(tchet)mi(mosa) is a advanced skeleton for [Mimosa](http://mimosa.io).
 
-- [Express.IO](http://express-io.org/) ([Express-Server](http://expressjs.com/) with [Socket.IO](http://socket.io/) (Websockets))
+- [ExpressJS](http://expressjs.com/) (Web-Server)
+- [Socket.IO](http://socket.io/) (Websockets))
 - [Bower](http://bower.io/) (Component Handling)
 - [RequireJS](http://requirejs.org/) (+CSS, +HBS)
 - [Jade](http://jade-lang.com/) (Server-Template)
