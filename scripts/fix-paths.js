@@ -1,79 +1,69 @@
 var fs = require( 'fs' );
 var path = require ( 'path' );
-//var async = require ( 'async' );
 
 var _fixPaths = function( mimosaConfig, options, next ) {
+  // Check if there are any input files
+  var files = options.files;
+  var hasFiles = files && files.length > 0;
   
-  var toFix = {
-    '$cssVendor$/font-awesome/font-awesome.css': {
-      '../fonts/': '/fonts/vendor/font-awesome/'
-    },
-    '$cssVendor$/bootstrap/bootstrap.css': {
-      '../fonts/': '/fonts/vendor/bootstrap/'
-    },
-  };
+  // Check if there are any fixes available
+  var fixes = mimosaConfig.pathFix.files;
+  var hasFixes = fixes !== undefined;
   
-  var amount = Object.keys( toFix ).length;
-  var fine = 0;
-  
-  if ( amount == 0 ) {
-    mimosaConfig.log.info( '[[ No ]] bower assets to fix' );
-    next();
-    return;
+  // If not having input or fix, return
+  if (!hasFiles || !hasFixes) {
+    return next();
   }
   
-  mimosaConfig.log.info( 'Assets to fix: [[ ' + amount + ' ]]' );
+  console.log( fixes );
   
-  for ( var filePath in toFix ) {
-    if ( _fixFile( filePath, toFix[filePath], mimosaConfig )) {
-      fine++; 
-    }
-  }
-  
-  var errors = amount - fine;
-  
-  if ( errors == 0 ) {
-    mimosaConfig.log.success( 'Finished. [[ ' + fine + ' ]] fixed');
-  } else {
-    mimosaConfig.log.warn( 'Finished. [[ ' + fine + ' ]] fixed, [[ ' + errors + ' ]] not'); 
-  }
-  next();
-};
+  // Check all files
+  files.forEach( function(file, i) {
+    var filePath = path.normalize( file.inputFileName );
+    var data = file.outputFileText;
 
-var _fixFile = function( filePath, fileFixes, mimosaConfig ) {
-  filePath = filePath.replace( '$sourceDir$', mimosaConfig.watch.sourceDir )
-    .replace( '$cssVendor$', mimosaConfig.vendor.stylesheets )
-    .replace( '$jsVendor$', mimosaConfig.vendor.javascripts );
+    // If there is a fix for the file
+    if ( fixes[filePath] !== undefined ) {
+      mimosaConfig.log.info( 'Fixing asset [[ ' + filePath + ' ]]' );
 
-  mimosaConfig.log.debug( 'Fixing asset [[ ' + filePath + ' ]]' );
-  
-  try {
-    fileData = fs.readFileSync( filePath, 'utf-8' );
-    if ( fileData.length == 0 ) {
-      mimosaConfig.log.warn ( 'Asset [[ ' + filePath + ' ]] is empty' );
-      return;
-    }
-    for ( var sourcePath in fileFixes ) {
-      var targetPath = fileFixes[sourcePath]; 
-      fileData = fileData.replace( 
-        _fixRegExp( sourcePath ),
-        targetPath
-      );
+      // ... iterate through all fixes
+      for ( var fileFix in fixes[filePath] ) {
+        // ... and replace the paths
+        data = data.replace (
+          _fixRegExp( fileFix ),
+          fixes[filePath][fileFix]
+        );
+      }
+      // ... and replace the file data
+      files[i].outputFileText = data;
     }
 
-    fs.writeFileSync( filePath, fileData );
-  } catch (error){
-    mimosaConfig.log.error( 'Cannot fix [[ ' + filePath + ' ]]: ' );
-    mimosaConfig.log.error( error.message );
-    return false;
-  }
-  return true;
+    // if at the end, invoke the next workflow step
+    if (i === files.length - 1) {
+      return next();
+    }
+  });
 };
 
 var _fixRegExp = function( string ) {
   return new RegExp( string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1" ), 'g' );
-}
- 
+};
+
 exports.registration = function( mimosaConfig, register ) {
-  register( ['preBuild'], 'init', _fixPaths );
+
+  // Overwrite all variables in path with their correct paths
+  for ( var file in mimosaConfig.pathFix.files ) {
+    var value = mimosaConfig.pathFix.files[file];
+    delete mimosaConfig.pathFix.files[file];
+    mimosaConfig.pathFix.files[ path.normalize(file
+      .replace( '$sourceDir$', mimosaConfig.watch.sourceDir )
+      .replace( '$cssVendor$', mimosaConfig.vendor.stylesheets )
+      .replace( '$jsVendor$', mimosaConfig.vendor.javascripts )
+    ) ] = value;
+  }
+
+  // If enabled, register into workflow
+  if ( mimosaConfig.pathFix.enabled ) {
+    register( ['add', 'update', 'buildExtension', 'buildFile'], 'beforeWrite', _fixPaths, mimosaConfig.pathFix.extensions );
+  }
 };

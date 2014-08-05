@@ -73,4 +73,15 @@ exports.config = {
       "otf","yaml","kml","ico","htc","htm","json","txt","xml","xsd","map",
       "md","mp4", "hbs"
   ]
+
+  # Path fixing
+  pathFix:
+    enabled: true
+    extensions: ['css']
+    files:
+      "$cssVendor$/font-awesome/font-awesome.css":
+        "../fonts/": "/fonts/vendor/font-awesome/"
+
+      "$cssVendor$/bootstrap/bootstrap.css":
+        "../fonts/": "/fonts/vendor/bootstrap/"
 }
