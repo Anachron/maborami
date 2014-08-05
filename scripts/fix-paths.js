@@ -14,9 +14,7 @@ var _fixPaths = function( mimosaConfig, options, next ) {
   if (!hasFiles || !hasFixes) {
     return next();
   }
-  
-  console.log( fixes );
-  
+
   // Check all files
   files.forEach( function(file, i) {
     var filePath = path.normalize( file.inputFileName );
